@@ -42,7 +42,6 @@
       align-items: center;
       min-height: 100vh;
       padding: 1rem;
-      z-index: 9999999;
     }
 
     .container {
@@ -53,7 +52,6 @@
       width: 100%;
       max-width: 450px;
       position: relative;
-      z-index: 9999999;
     }
 
     h2 {
@@ -167,8 +165,8 @@
     <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
       <input type="hidden" name="access_key" value="19d38106-4320-401c-9188-609ca52714fb">
 
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
+      <input type="text" name="name" placeholder="Name" required />
+      <input type="email" name="email" placeholder="Email" required />
       <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
 
       <button type="submit">Send Message</button>
@@ -233,3 +231,4 @@ toggle.addEventListener('click', () => {
 </body>
 <!-- Created by @surajdasop69 -->
 </html>
+
