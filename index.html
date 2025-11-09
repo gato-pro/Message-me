@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Me</title>
+  <style>
+    :root {
+      --bg: #f9fafb;
+      --card: #ffffff;
+      --primary: #2563eb;
+      --primary-dark: #1e40af;
+      --text: #111827;
+      --border: #e5e7eb;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    /* 🌙 Dark Mode Variables */
+    .dark-mode {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --primary: #3b82f6;
+      --primary-dark: #60a5fa;
+      --text: #f9fafb;
+      --border: #3b83f6ac;
+      --shadow: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1rem;
+      z-index: 9999999;
+    }
+
+    .container {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px var(--shadow);
+      width: 100%;
+      max-width: 450px;
+      position: relative;
+      z-index: 9999999;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      resize: none;
+      background: transparent;
+      color: var(--text);
+      font-family: inherit;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #9ca3af;
+    }
+
+    button {
+      background-color: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0.9rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      color: #10b981;
+      font-weight: 500;
+      margin-top: 1rem;
+    }
+
+    /* 🌗 Toggle Button */
+    .theme-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.4rem;
+      color: var(--text);
+      transition: transform 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(20deg);
+    }
+
+    /* 📱 Responsive tweaks */
+    @media (max-width: 480px) {
+      .container {
+        padding: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+      }
+
+      input,
+      textarea,
+      button {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 🌞/🌙 Toggle Button -->
+
+    <!-- 🌗 SVG Toggle Button -->
+<button class="theme-toggle" id="themeToggle" title="Toggle theme">
+  <!-- Default: Moon (Light mode) -->
+  <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M21.64 13.65a9 9 0 01-11.3-11.3 1 1 0 00-1.05-1.35 10 10 0 1012.7 12.7 1 1 0 00-1.35-1.05z"/>
+  </svg>
+
+  <!-- Hidden Sun (Dark mode) -->
+  <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24" style="display:none;">
+    <path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.8 1.42-1.42zm10.48 0l1.79-1.8 1.41 1.41-1.8 1.79-1.4-1.4zM12 5a7 7 0 107 7 7 7 0 00-7-7zm0 12a5 5 0 115-5 5 5 0 01-5 5zm-1 4h2v3h-2zm0-22h2v3h-2zm11 11h3v2h-3zm-22 0h3v2H0zm18.36 7.36l1.8 1.79 1.41-1.41-1.79-1.8-1.42 1.42zm-12.72 0l-1.8 1.79 1.41 1.41 1.79-1.79-1.4-1.41z"/>
+  </svg>
+</button>
+
+
+    <h2>Send a Message</h2>
+    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="19d38106-4320-401c-9188-609ca52714fb">
+
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+    <p class="success-message" id="successMessage">✅ Message sent successfully!</p>
+  </div>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const successMsg = document.getElementById('successMessage');
+    
+
+
+const toggle = document.getElementById('themeToggle');
+const body = document.body;
+const moonIcon = document.getElementById('moonIcon');
+const sunIcon = document.getElementById('sunIcon');
+
+// Set theme
+function setTheme(theme) {
+  if (theme === 'dark') {
+    body.classList.add('dark-mode');
+    sunIcon.style.display = 'block';
+    moonIcon.style.display = 'none';
+  } else {
+    body.classList.remove('dark-mode');
+    sunIcon.style.display = 'none';
+    moonIcon.style.display = 'block';
+  }
+  localStorage.setItem('theme', theme);
+}
+
+// Load saved theme
+const savedTheme = localStorage.getItem('theme') || 'light';
+setTheme(savedTheme);
+
+// Toggle click
+toggle.addEventListener('click', () => {
+  const newTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
+  setTheme(newTheme);
+});
+
+
+
+    // 📨 Form submission
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData
+      });
+      if (response.ok) {
+        successMsg.style.display = 'block';
+        form.reset();
+        setTimeout(() => successMsg.style.display = 'none', 5000);
+      } else {
+        alert('Something went wrong. Please try again later.');
+      }
+    });
+  </script>
+</body>
+<!-- Created by @surajdasop69 -->
+</html>
